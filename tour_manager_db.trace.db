@@ -1,0 +1,92 @@
+2018-07-08 17:09:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Синтаксическая ошибка в выражении SQL "CREATE TABLE IF NOT EXISTS TOURS (ID INT(11) PRIMARY KEY AUTO_INCREMENT, NAME VARCHAR(50) UNIQUE, TYPE VARCHAR(50), DURATION INT(3), PRICE FLOAT(5,[*]2)); "; ожидалось ")"
+Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS TOURS (ID INT(11) PRIMARY KEY AUTO_INCREMENT, NAME VARCHAR(50) UNIQUE, TYPE VARCHAR(50), DURATION INT(3), PRICE FLOAT(5,[*]2)); "; expected ")"; SQL statement:
+CREATE TABLE IF NOT EXISTS tours (id INT(11) PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50) UNIQUE, type VARCHAR(50), duration INT(3), price FLOAT(5,2)); [42001-197]
+2018-07-08 17:09:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOURS" не найдена
+Table "TOURS" not found; SQL statement:
+INSERT INTO tours (name, type, duration, price) VALUES (?, ?, ?, ?) [42102-197]
+2018-07-08 17:10:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Синтаксическая ошибка в выражении SQL "CREATE TABLE IF NOT EXISTS TOURS (ID INT(11) PRIMARY KEY AUTO_INCREMENT, NAME VARCHAR(100) UNIQUE, TYPE VARCHAR(100), DURATION INT(11), PRICE FLOAT(5,[*]2)); "; ожидалось ")"
+Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS TOURS (ID INT(11) PRIMARY KEY AUTO_INCREMENT, NAME VARCHAR(100) UNIQUE, TYPE VARCHAR(100), DURATION INT(11), PRICE FLOAT(5,[*]2)); "; expected ")"; SQL statement:
+CREATE TABLE IF NOT EXISTS tours (id INT(11) PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100) UNIQUE, type VARCHAR(100), duration INT(11), price FLOAT(5,2)); [42001-197]
+2018-07-08 17:10:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOURS" не найдена
+Table "TOURS" not found; SQL statement:
+INSERT INTO tours (name, type, duration, price) VALUES (?, ?, ?, ?) [42102-197]
+2018-07-08 18:47:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Синтаксическая ошибка в выражении SQL "CREATE TABLE IF NOT EXISTS TOUR_COUNTRIES (ID INT(11) PRIMARY KEY AUTO_INCREMENT, TOUR_ID INT(11) REFERENCES TOURS(ID), COUNTRY_ID INT(11);[*] "; ожидалось "FOR, UNSIGNED, INVISIBLE, VISIBLE, NOT, NULL, AS, DEFAULT, GENERATED, ON, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS TOUR_COUNTRIES (ID INT(11) PRIMARY KEY AUTO_INCREMENT, TOUR_ID INT(11) REFERENCES TOURS(ID), COUNTRY_ID INT(11);[*] "; expected "FOR, UNSIGNED, INVISIBLE, VISIBLE, NOT, NULL, AS, DEFAULT, GENERATED, ON, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE IF NOT EXISTS tour_countries (id INT(11) PRIMARY KEY AUTO_INCREMENT, tour_id INT(11) REFERENCES tours(id), country_id INT(11); [42001-197]
+2018-07-08 19:11:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOUR" не найдена
+Table "TOUR" not found; SQL statement:
+CREATE TABLE IF NOT EXISTS tour_countries (id INT(11) PRIMARY KEY AUTO_INCREMENT, FOREIGN KEY (tour_id) REFERENCES tour(id), FOREIGN KEY (country_id) REFERENCES country(id)); [42102-197]
+2018-07-08 19:11:08 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOUR_COUNTRIES" не найдена
+Table "TOUR_COUNTRIES" not found; SQL statement:
+INSERT INTO tour_countries (tour_id, country_id) VALUES (?, ?) [42102-197]
+2018-07-08 19:11:08 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOUR_COUNTRIES" не найдена
+Table "TOUR_COUNTRIES" not found; SQL statement:
+select * from tour_countries [42102-197]
+2018-07-08 19:12:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOUR" не найдена
+Table "TOUR" not found; SQL statement:
+CREATE TABLE IF NOT EXISTS tour_countries (id INT(11) PRIMARY KEY AUTO_INCREMENT, tour_id INT(11) REFERENCES tour(id), country_id INT(11) REFERENCES country(id)); [42102-197]
+2018-07-08 19:12:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOUR_COUNTRIES" не найдена
+Table "TOUR_COUNTRIES" not found; SQL statement:
+select * from tour_countries [42102-197]
+2018-07-08 19:12:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOUR" не найдена
+Table "TOUR" not found; SQL statement:
+CREATE TABLE IF NOT EXISTS tour_countries (id INT(11) PRIMARY KEY AUTO_INCREMENT, tour_id INT(11) REFERENCES tour(id), country_id INT(11) REFERENCES country(id)); [42102-197]
+2018-07-08 19:12:32 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOUR_COUNTRIES" не найдена
+Table "TOUR_COUNTRIES" not found; SQL statement:
+INSERT INTO tour_countries (tour_id, country_id) VALUES (?, ?) [42102-197]
+2018-07-08 19:12:32 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOUR_COUNTRIES" не найдена
+Table "TOUR_COUNTRIES" not found; SQL statement:
+select * from tour_countries [42102-197]
+2018-07-08 19:28:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Синтаксическая ошибка в выражении SQL "CREATE TABLE IF NOT EXISTS TOUR_COUNTRIES (ID INT(11) PRIMARY KEY AUTO_INCREMENT, TOUR_ID INT(11), COUNTRY_ID INT(11) REFERENCES COUNTRY(NAME);[*] "; ожидалось "INDEX, ON, NOT, DEFERRABLE, ,, )"
+Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS TOUR_COUNTRIES (ID INT(11) PRIMARY KEY AUTO_INCREMENT, TOUR_ID INT(11), COUNTRY_ID INT(11) REFERENCES COUNTRY(NAME);[*] "; expected "INDEX, ON, NOT, DEFERRABLE, ,, )"; SQL statement:
+CREATE TABLE IF NOT EXISTS tour_countries (id INT(11) PRIMARY KEY AUTO_INCREMENT, tour_id INT(11), country_id INT(11) REFERENCES country(name); [42001-197]
+2018-07-08 19:28:18 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOUR_COUNTRIES" не найдена
+Table "TOUR_COUNTRIES" not found; SQL statement:
+INSERT INTO tour_countries (tour_id, country_id) VALUES (?, ?) [42102-197]
+2018-07-08 19:28:18 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOUR_COUNTRIES" не найдена
+Table "TOUR_COUNTRIES" not found; SQL statement:
+select * from tour_countries [42102-197]
+2018-07-08 19:29:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Синтаксическая ошибка в выражении SQL "CREATE TABLE IF NOT EXISTS TOUR_COUNTRIES (ID INT(11) PRIMARY KEY AUTO_INCREMENT, TOUR_ID INT(11), COUNTRY_ID INT(11) REFERENCES COUNTRIES(NAME);[*] "; ожидалось "INDEX, ON, NOT, DEFERRABLE, ,, )"
+Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS TOUR_COUNTRIES (ID INT(11) PRIMARY KEY AUTO_INCREMENT, TOUR_ID INT(11), COUNTRY_ID INT(11) REFERENCES COUNTRIES(NAME);[*] "; expected "INDEX, ON, NOT, DEFERRABLE, ,, )"; SQL statement:
+CREATE TABLE IF NOT EXISTS tour_countries (id INT(11) PRIMARY KEY AUTO_INCREMENT, tour_id INT(11), country_id INT(11) REFERENCES countries(name); [42001-197]
+2018-07-08 19:29:06 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOUR_COUNTRIES" не найдена
+Table "TOUR_COUNTRIES" not found; SQL statement:
+INSERT INTO tour_countries (tour_id, country_id) VALUES (?, ?) [42102-197]
+2018-07-08 19:29:06 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOUR_COUNTRIES" не найдена
+Table "TOUR_COUNTRIES" not found; SQL statement:
+select * from tour_countries [42102-197]
+2018-07-08 19:31:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Синтаксическая ошибка в выражении SQL "CREATE TABLE IF NOT EXISTS TOUR_COUNTRIES (ID INT(11) PRIMARY KEY AUTO_INCREMENT, TOUR_ID INT(11), COUNTRY_ID INT(11) REFERENCES COUNTRIES(ID);[*] "; ожидалось "INDEX, ON, NOT, DEFERRABLE, ,, )"
+Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS TOUR_COUNTRIES (ID INT(11) PRIMARY KEY AUTO_INCREMENT, TOUR_ID INT(11), COUNTRY_ID INT(11) REFERENCES COUNTRIES(ID);[*] "; expected "INDEX, ON, NOT, DEFERRABLE, ,, )"; SQL statement:
+CREATE TABLE IF NOT EXISTS tour_countries (id INT(11) PRIMARY KEY AUTO_INCREMENT, tour_id INT(11), country_id INT(11) REFERENCES countries(id); [42001-197]
+2018-07-08 19:31:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOUR_COUNTRIES" не найдена
+Table "TOUR_COUNTRIES" not found; SQL statement:
+select * from tour_countries [42102-197]
+2018-07-08 19:31:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Синтаксическая ошибка в выражении SQL "CREATE TABLE IF NOT EXISTS TOUR_COUNTRIES (ID INT(11) PRIMARY KEY AUTO_INCREMENT, TOUR_ID INT(11), COUNTRY_ID INT(11);[*] "; ожидалось "FOR, UNSIGNED, INVISIBLE, VISIBLE, NOT, NULL, AS, DEFAULT, GENERATED, ON, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS TOUR_COUNTRIES (ID INT(11) PRIMARY KEY AUTO_INCREMENT, TOUR_ID INT(11), COUNTRY_ID INT(11);[*] "; expected "FOR, UNSIGNED, INVISIBLE, VISIBLE, NOT, NULL, AS, DEFAULT, GENERATED, ON, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE IF NOT EXISTS tour_countries (id INT(11) PRIMARY KEY AUTO_INCREMENT, tour_id INT(11), country_id INT(11); [42001-197]
+2018-07-08 19:31:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "TOUR_COUNTRIES" не найдена
+Table "TOUR_COUNTRIES" not found; SQL statement:
+select * from tour_countries [42102-197]
