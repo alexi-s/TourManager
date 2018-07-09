@@ -90,3 +90,21 @@ CREATE TABLE IF NOT EXISTS tour_countries (id INT(11) PRIMARY KEY AUTO_INCREMENT
 org.h2.jdbc.JdbcSQLException: Таблица "TOUR_COUNTRIES" не найдена
 Table "TOUR_COUNTRIES" not found; SQL statement:
 select * from tour_countries [42102-197]
+2018-07-09 17:28:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Параметр "#1" не установлен
+Parameter "#1" is not set; SQL statement:
+SELECT * FROM tours WHERE type=? [90012-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:81)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:170)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:113)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:85)
+	at repository.impl.TourDAOH2Impl.getToursByType(TourDAOH2Impl.java:146)
+	at service.TourService.getToursByType(TourService.java:31)
+	at controller.MainController.showToursMenu(MainController.java:126)
+	at controller.MainController.mainMenu(MainController.java:52)
+	at controller.MainController.doWork(MainController.java:28)
+	at Main.main(Main.java:19)

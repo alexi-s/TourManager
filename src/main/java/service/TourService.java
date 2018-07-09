@@ -1,6 +1,7 @@
 package service;
 
 import domain.Tour;
+import domain.TourType;
 import repository.TourDAO;
 import repository.impl.TourDAOH2Impl;
 
@@ -25,4 +26,9 @@ public class TourService {
     public List<Tour> getAllTours() {
         return tourDAO.getAllTours();
     }
+
+    public List<Tour> getToursByType(TourType type) {
+        return tourDAO.getToursByType(type);
+    }
+
 }

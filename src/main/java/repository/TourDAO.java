@@ -2,6 +2,7 @@ package repository;
 
 import domain.Country;
 import domain.Tour;
+import domain.TourType;
 
 import java.util.List;
 
@@ -16,5 +17,7 @@ public interface TourDAO {
     List<Tour> getAllTours();
 
     List<Tour> getToursByCountry(Country country);
+
+    List<Tour> getToursByType(TourType type);
 
 }

@@ -29,8 +29,9 @@ public class TourDAOH2Impl implements TourDAO {
     private static final String UPDATE_TOUR = "UPDATE tours SET name=?, type=?, duration=?, price=? WHERE id=?";
     private static final String GET_ALL_TOURS = "SELECT * FROM tours";
     private static final String INSERT_TOUR_COUNTRIES = "INSERT INTO tour_countries (tour_id, country_id) VALUES (?, ?)";
+    private static final String GET_TOURS_BY_COUNTRY = "SELECT * FROM tour_countries WHERE country_id=?";
+    private static final String GET_TOURS_BY_TYPE = "SELECT * FROM tours WHERE type=?";
     //    private static final String UPDATE_TOUR_COUNTRIES = "UPDATE tours SET name=?, type=?, duration=?, price=? WHERE id=?";
-    private static final String GET_TOUR_BY_COUNTRY = "SELECT * FROM tour_countries WHERE country_id=?";
     private static final String GET_TOUR_COUNTRIES = "SELECT * FROM tour_countries";
 
     private Connection connection;
@@ -88,18 +89,6 @@ public class TourDAOH2Impl implements TourDAO {
         return id;
     }
 
-    private void reference(int id, List<Country> countries) {
-        try {
-            connection = getInstance().getConnection();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            getInstance().closePreparedStatement(pst);
-            getInstance().closeConnection(connection);
-        }
-    }
-
     @Override
     public void deleteTour(Tour tour) {
 
@@ -127,7 +116,7 @@ public class TourDAOH2Impl implements TourDAO {
                     tour.setPrice(rs.getFloat("price"));
 
                     List<Country> countries = new ArrayList<>();
-                    countries.add(new Country(1, "Ukraine"));
+                    countries.add(new Country(1, "Ukraine"));  // wrong!
 
                     tour.setCountries(countries);
                     tours.add(tour);
@@ -146,5 +135,39 @@ public class TourDAOH2Impl implements TourDAO {
     @Override
     public List<Tour> getToursByCountry(Country country) {
         return null;
+    }
+
+    @Override
+    public List<Tour> getToursByType(TourType type) {
+        List<Tour> tours = new ArrayList<>();
+        try {
+            connection = getInstance().getConnection();
+            pst = connection.prepareStatement(GET_TOURS_BY_TYPE);
+            pst.setString(1, type.toString());
+            rs = pst.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    Tour tour = new Tour();
+                    tour.setId(rs.getInt("id"));
+                    tour.setName(rs.getString("name"));
+                    tour.setType(TourType.valueOf(rs.getString("type")));
+                    tour.setDuration(rs.getInt("duration"));
+                    tour.setPrice(rs.getFloat("price"));
+
+                    List<Country> countries = new ArrayList<>();
+                    countries.add(new Country(1, "Ukraine"));  // wrong!
+
+                    tour.setCountries(countries);
+                    tours.add(tour);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            getInstance().closeResultSet(rs);
+            getInstance().closeStatement(pst);
+            getInstance().closeConnection(connection);
+        }
+        return tours;
     }
 }
