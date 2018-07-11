@@ -32,7 +32,6 @@ public class TourDAOH2Impl implements TourDAO {
 
     private static final String INSERT_TOUR_COUNTRIES = "INSERT INTO tour_countries (tour_id, country_id) VALUES (?, ?)";
     private static final String DELETE_TOUR_COUNTRIES = "DELETE FROM tour_countries WHERE tour_id=?";
-    //    private static final String UPDATE_TOUR_COUNTRIES = "UPDATE tours SET name=?, type=?, duration=?, price=? WHERE id=?";
     private static final String GET_TOUR_COUNTRIES = "SELECT * FROM tour_countries LEFT JOIN countries ON tour_countries.country_id=countries.id WHERE tour_id=?";
     private static final String GET_TOURS_BY_COUNTRY = "SELECT * FROM tour_countries LEFT JOIN tours ON tour_countries.tour_id=tours.id WHERE country_id=?";
     private static final String GET_TOURS_BY_TYPE = "SELECT * FROM tours WHERE type=?";
@@ -112,7 +111,37 @@ public class TourDAOH2Impl implements TourDAO {
 
     @Override
     public void updateTour(Tour tour) {
+        List<Country> countries = tour.getCountries();
+        try {
+            connection = getInstance().getConnection();
+//            UPDATE tours SET name=?, type=?, duration=?, price=? WHERE id=?
+            pst = connection.prepareStatement(UPDATE_TOUR);
+            pst.setString(1, tour.getName());
+            pst.setString(2, tour.getType().toString());
+            pst.setInt(3, tour.getDuration());
+            pst.setFloat(4, tour.getPrice());
+            pst.setInt(5, tour.getId());
+            pst.executeUpdate();
 
+            int id = tour.getId();
+            pst = connection.prepareStatement(DELETE_TOUR_COUNTRIES);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+
+            pst = connection.prepareStatement(INSERT_TOUR_COUNTRIES);
+            pst.setInt(1, id);
+            Iterator<Country> iterator = countries.iterator();
+            while (iterator.hasNext()) {
+                Country country = iterator.next();
+                pst.setInt(2, country.getId());
+                pst.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            getInstance().closePreparedStatement(pst);
+            getInstance().closeConnection(connection);
+        }
     }
 
     @Override

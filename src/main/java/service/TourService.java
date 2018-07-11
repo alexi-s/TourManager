@@ -6,6 +6,7 @@ import domain.TourType;
 import repository.TourDAO;
 import repository.impl.TourDAOH2Impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class TourService {
@@ -40,4 +41,29 @@ public class TourService {
         return tourDAO.getCountriesByTourId(id);
     }
 
+    public Tour findTourByName(List<Tour> tours, String name) {
+        Tour tour = null;
+        Iterator<Tour> iterator = tours.iterator();
+        while (iterator.hasNext()) {
+            tour = iterator.next();
+            if (tour.getName().equals(name)) {
+                break;
+            }
+            tour = null;
+        }
+        return tour;
+    }
+
+    public Tour findTourById(List<Tour> tours, int id) {
+        Tour tour = null;
+        Iterator<Tour> iterator = tours.iterator();
+        while (iterator.hasNext()) {
+            tour = iterator.next();
+            if (tour.getId() == id) {
+                break;
+            }
+            tour = null;
+        }
+        return tour;
+    }
 }

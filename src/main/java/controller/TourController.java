@@ -42,9 +42,17 @@ public class TourController {
                     break;
                 }
                 case 2: {
+                    Tour tour = selectTour();
+                    if (tour != null) {
+                        deleteTour(tour);
+                    }
                     break;
                 }
                 case 3: {
+                    Tour tour = selectTour();
+                    if (tour != null) {
+                        updateTour(tour);
+                    }
                     break;
                 }
                 case 4: {
@@ -103,6 +111,26 @@ public class TourController {
         System.out.println("Tour added.");
     }
 
+    private void deleteTour(Tour tour) {
+        tourService.deleteTour(tour);
+        System.out.println(tour.getName() + " deleted.");
+    }
+
+    private void updateTour(Tour tour) {
+        List<Tour> tours = getAllTours();
+        tours.remove(tour);
+        String str = tour.getName();
+        System.out.println("Found: " + str);
+        System.out.print("\nEnter new country name: ");
+        tour.setName(scanner.next());
+        if (tours.contains(tour)) {
+            System.out.println(tour.getName() + " already exists.");
+        } else {
+            tourService.updateTour(tour);
+            System.out.println(str + " updated to " + tour.getName());
+        }
+    }
+
     private List<Tour> getAllTours() {
         List<Tour> tours = tourService.getAllTours();
         tours.forEach(tour -> {
@@ -125,6 +153,23 @@ public class TourController {
             tour.setCountries(tourService.getCountriesByTourId(tour.getId()));
         });
         return tours;
+    }
+
+    private Tour selectTour() {
+        Tour tour = null;
+        List<Tour> tours = getAllTours();
+        Utility.printList(tours);
+        System.out.print("\nEnter tour name or ID: ");
+        String str = scanner.next();
+        if (Utility.checkId(str)) {
+            tour = tourService.findTourById(tours, Integer.valueOf(str));
+        } else {
+            tour = tourService.findTourByName(tours, str);
+        }
+        if (tour == null) {
+            System.out.println("Tour not found.");
+        }
+        return tour;
     }
 
     private TourType selectTourType() {
