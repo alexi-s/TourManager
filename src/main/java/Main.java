@@ -1,13 +1,13 @@
 import controller.MainController;
-import domain.Country;
-import domain.Resort;
-import domain.Tour;
-import domain.TourType;
+import domain.*;
 import service.CountryService;
 import service.TourService;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
@@ -17,6 +17,7 @@ public class Main {
 
         MainController mainController = new MainController();
         mainController.doWork();
+
 
 //        CountryService countryService = new CountryService();
 //        TourService tourService = new TourService();

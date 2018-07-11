@@ -9,5 +9,8 @@
         <module name="TourManager" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="TourManager" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

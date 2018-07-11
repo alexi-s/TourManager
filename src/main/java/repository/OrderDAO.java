@@ -14,4 +14,8 @@ public interface OrderDAO {
 
     List<Order> getAllOrders();
 
+    List<Order> getOrdersByClientId(int id);
+
+    Order getOrderByTourId(int id);
+
 }

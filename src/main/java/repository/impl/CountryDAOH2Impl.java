@@ -1,6 +1,5 @@
 package repository.impl;
 
-import exception.CountryExistsException;
 import repository.CountryDAO;
 import domain.Country;
 
@@ -12,7 +11,7 @@ import static repository.impl.ConnectionFactory.getInstance;
 
 public class CountryDAOH2Impl implements CountryDAO {
 
-    private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS countries (" +
+    private static final String CREATE_TABLE_COUNTRIES = "CREATE TABLE IF NOT EXISTS countries (" +
             "id INT(11) PRIMARY KEY AUTO_INCREMENT, " +
             "name VARCHAR(50) UNIQUE);";
     private static final String INSERT_COUNTRY = "INSERT INTO countries (name) VALUES (?)";
@@ -31,7 +30,7 @@ public class CountryDAOH2Impl implements CountryDAO {
         try {
             connection = getInstance().getConnection();
             stmt = connection.createStatement();
-            stmt.execute(CREATE_TABLE);
+            stmt.execute(CREATE_TABLE_COUNTRIES);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

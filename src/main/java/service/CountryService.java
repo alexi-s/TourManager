@@ -5,6 +5,7 @@ import exception.CountryExistsException;
 import repository.CountryDAO;
 import repository.impl.CountryDAOH2Impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class CountryService {
@@ -31,5 +32,31 @@ public class CountryService {
 
     public List<Country> getSortedCountries() {
         return countryDAO.getSortedCountries();
+    }
+
+    public Country findCountryByName(List<Country> countries, String name) {
+        Country country = null;
+        Iterator<Country> iterator = countries.iterator();
+        while (iterator.hasNext()) {
+            country = iterator.next();
+            if (country.getName().equals(name)) {
+                break;
+            }
+            country = null;
+        }
+        return country;
+    }
+
+    public Country findCountryById(List<Country> countries, int id) {
+        Country country = null;
+        Iterator<Country> iterator = countries.iterator();
+        while (iterator.hasNext()) {
+            country = iterator.next();
+            if (country.getId() == id) {
+                break;
+            }
+            country = null;
+        }
+        return country;
     }
 }

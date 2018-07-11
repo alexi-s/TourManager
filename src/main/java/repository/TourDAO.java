@@ -20,4 +20,5 @@ public interface TourDAO {
 
     List<Tour> getToursByType(TourType type);
 
+    List<Country> getCountriesByTourId(int id);
 }

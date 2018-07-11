@@ -12,6 +12,12 @@ public interface ClientDAO {
 
     void updateClient(Client client);
 
-    List<Client> getAllTours();
+    List<Client> getAllClients();
+
+    List<Client> getClientsSortedByLastName();
+
+    Client getClientById(int id);
+
+    Client getClientByLastName(String lastName);
 
 }

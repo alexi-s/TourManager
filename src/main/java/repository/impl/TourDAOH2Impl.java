@@ -24,15 +24,18 @@ public class TourDAOH2Impl implements TourDAO {
             "id INT(11) PRIMARY KEY AUTO_INCREMENT, " +
             "tour_id INT(11), " +
             "country_id INT(11) REFERENCES countries(id));";
+
     private static final String INSERT_TOUR = "INSERT INTO tours (name, type, duration, price) VALUES (?, ?, ?, ?)";
     private static final String DELETE_TOUR = "DELETE FROM tours WHERE ID=?";
     private static final String UPDATE_TOUR = "UPDATE tours SET name=?, type=?, duration=?, price=? WHERE id=?";
     private static final String GET_ALL_TOURS = "SELECT * FROM tours";
+
     private static final String INSERT_TOUR_COUNTRIES = "INSERT INTO tour_countries (tour_id, country_id) VALUES (?, ?)";
-    private static final String GET_TOURS_BY_COUNTRY = "SELECT * FROM tour_countries WHERE country_id=?";
-    private static final String GET_TOURS_BY_TYPE = "SELECT * FROM tours WHERE type=?";
+    private static final String DELETE_TOUR_COUNTRIES = "DELETE FROM tour_countries WHERE tour_id=?";
     //    private static final String UPDATE_TOUR_COUNTRIES = "UPDATE tours SET name=?, type=?, duration=?, price=? WHERE id=?";
-    private static final String GET_TOUR_COUNTRIES = "SELECT * FROM tour_countries";
+    private static final String GET_TOUR_COUNTRIES = "SELECT * FROM tour_countries LEFT JOIN countries ON tour_countries.country_id=countries.id WHERE tour_id=?";
+    private static final String GET_TOURS_BY_COUNTRY = "SELECT * FROM tour_countries LEFT JOIN tours ON tour_countries.tour_id=tours.id WHERE country_id=?";
+    private static final String GET_TOURS_BY_TYPE = "SELECT * FROM tours WHERE type=?";
 
     private Connection connection;
     private Statement stmt = null;
@@ -91,7 +94,20 @@ public class TourDAOH2Impl implements TourDAO {
 
     @Override
     public void deleteTour(Tour tour) {
-
+        try {
+            connection = getInstance().getConnection();
+            pst = connection.prepareStatement(DELETE_TOUR);
+            pst.setInt(1, tour.getId());
+            pst.executeUpdate();
+            pst = connection.prepareStatement(DELETE_TOUR_COUNTRIES);
+            pst.setInt(1, tour.getId());
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            getInstance().closePreparedStatement(pst);
+            getInstance().closeConnection(connection);
+        }
     }
 
     @Override
@@ -114,11 +130,6 @@ public class TourDAOH2Impl implements TourDAO {
                     tour.setType(TourType.valueOf(rs.getString("type")));
                     tour.setDuration(rs.getInt("duration"));
                     tour.setPrice(rs.getFloat("price"));
-
-                    List<Country> countries = new ArrayList<>();
-                    countries.add(new Country(1, "Ukraine"));  // wrong!
-
-                    tour.setCountries(countries);
                     tours.add(tour);
                 }
             }
@@ -134,7 +145,31 @@ public class TourDAOH2Impl implements TourDAO {
 
     @Override
     public List<Tour> getToursByCountry(Country country) {
-        return null;
+        List<Tour> tours = new ArrayList<>();
+        try {
+            connection = getInstance().getConnection();
+            pst = connection.prepareStatement(GET_TOURS_BY_COUNTRY);
+            pst.setInt(1, country.getId());
+            rs = pst.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    Tour tour = new Tour();
+                    tour.setId(rs.getInt(4));
+                    tour.setName(rs.getString("name"));
+                    tour.setType(TourType.valueOf(rs.getString("type")));
+                    tour.setDuration(rs.getInt("duration"));
+                    tour.setPrice(rs.getFloat("price"));
+                    tours.add(tour);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            getInstance().closeResultSet(rs);
+            getInstance().closePreparedStatement(pst);
+            getInstance().closeConnection(connection);
+        }
+        return tours;
     }
 
     @Override
@@ -154,10 +189,9 @@ public class TourDAOH2Impl implements TourDAO {
                     tour.setDuration(rs.getInt("duration"));
                     tour.setPrice(rs.getFloat("price"));
 
-                    List<Country> countries = new ArrayList<>();
-                    countries.add(new Country(1, "Ukraine"));  // wrong!
+//                    List<Country> countries = getCountriesByTourId(rs.getInt("id"));
+//                    tour.setCountries(countries);
 
-                    tour.setCountries(countries);
                     tours.add(tour);
                 }
             }
@@ -165,9 +199,31 @@ public class TourDAOH2Impl implements TourDAO {
             e.printStackTrace();
         } finally {
             getInstance().closeResultSet(rs);
-            getInstance().closeStatement(pst);
+            getInstance().closePreparedStatement(pst);
             getInstance().closeConnection(connection);
         }
         return tours;
+    }
+
+    public List<Country> getCountriesByTourId(int id) {
+        List<Country> countries = new ArrayList<>();
+        try {
+            connection = getInstance().getConnection();
+            pst = connection.prepareStatement(GET_TOUR_COUNTRIES);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    Country country = new Country();
+                    countries.add(new Country(rs.getInt(4), rs.getString("name")));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            getInstance().closeResultSet(rs);
+            getInstance().closePreparedStatement(pst);
+        }
+        return countries;
     }
 }

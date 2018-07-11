@@ -9,6 +9,7 @@ import java.util.Objects;
 
 @Setter
 @Getter
+@ToString
 public class Country {
 
     private int id;
@@ -40,8 +41,4 @@ public class Country {
         return Objects.hash(name);
     }
 
-    @Override
-    public String toString() {
-        return id + ". " + name;
-    }
 }

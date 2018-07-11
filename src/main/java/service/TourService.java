@@ -1,5 +1,6 @@
 package service;
 
+import domain.Country;
 import domain.Tour;
 import domain.TourType;
 import repository.TourDAO;
@@ -27,8 +28,16 @@ public class TourService {
         return tourDAO.getAllTours();
     }
 
+    public List<Tour> getToursByCountry(Country country) {
+        return tourDAO.getToursByCountry(country);
+    }
+
     public List<Tour> getToursByType(TourType type) {
         return tourDAO.getToursByType(type);
+    }
+
+    public List<Country> getCountriesByTourId(int id){
+        return tourDAO.getCountriesByTourId(id);
     }
 
 }

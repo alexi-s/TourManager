@@ -108,3 +108,627 @@ SELECT * FROM tours WHERE type=? [90012-197]
 	at controller.MainController.mainMenu(MainController.java:52)
 	at controller.MainController.doWork(MainController.java:28)
 	at Main.main(Main.java:19)
+2018-07-10 13:48:18 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Неоднозначное имя столбца "ID"
+Ambiguous column name "ID"; SQL statement:
+SELECT * FROM tour_countries LEFT JOIN countries ON country_id=id WHERE tour_id=? [90059-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.mapColumn(ExpressionColumn.java:127)
+	at org.h2.expression.ExpressionColumn.mapColumns(ExpressionColumn.java:97)
+	at org.h2.expression.Comparison.mapColumns(Comparison.java:512)
+	at org.h2.table.TableFilter$MapColumnsVisitor.accept(TableFilter.java:1228)
+	at org.h2.table.TableFilter.visit(TableFilter.java:1182)
+	at org.h2.table.TableFilter.addJoin(TableFilter.java:669)
+	at org.h2.command.Parser.addJoin(Parser.java:1857)
+	at org.h2.command.Parser.readJoin(Parser.java:1774)
+	at org.h2.command.Parser.parseJoinTableFilter(Parser.java:2183)
+	at org.h2.command.Parser.parseSelectSimpleFromPart(Parser.java:2139)
+	at org.h2.command.Parser.parseSelectSimple(Parser.java:2287)
+	at org.h2.command.Parser.parseSelectSub(Parser.java:2133)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:1946)
+	at org.h2.command.Parser.parseSelect(Parser.java:1919)
+	at org.h2.command.Parser.parsePrepared(Parser.java:463)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:76)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:304)
+	at repository.impl.TourDAOH2Impl.getCountriesByTourId(TourDAOH2Impl.java:177)
+	at repository.impl.TourDAOH2Impl.getAllTours(TourDAOH2Impl.java:118)
+	at service.TourService.getAllTours(TourService.java:27)
+	at controller.MainController.showToursMenu(MainController.java:118)
+	at controller.MainController.mainMenu(MainController.java:52)
+	at controller.MainController.doWork(MainController.java:28)
+	at Main.main(Main.java:19)
+2018-07-10 13:48:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Объект уже закрыт
+The object is already closed [90007-197]
+2018-07-10 13:54:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Столбец "TOUR_SOUNTRIES.COUNTRY_ID" не найден
+Column "TOUR_SOUNTRIES.COUNTRY_ID" not found; SQL statement:
+SELECT * FROM tour_countries LEFT JOIN countries ON tour_sountries.country_id=countries.id WHERE tour_id=? [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:150)
+	at org.h2.expression.Comparison.optimize(Comparison.java:177)
+	at org.h2.command.dml.Select.setEvaluatableRecursive(Select.java:1044)
+	at org.h2.command.dml.Select.preparePlan(Select.java:1022)
+	at org.h2.command.dml.Select.prepare(Select.java:884)
+	at org.h2.command.Parser.prepareCommand(Parser.java:283)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:76)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:304)
+	at repository.impl.TourDAOH2Impl.getCountriesByTourId(TourDAOH2Impl.java:177)
+	at repository.impl.TourDAOH2Impl.getAllTours(TourDAOH2Impl.java:118)
+	at service.TourService.getAllTours(TourService.java:27)
+	at controller.MainController.showToursMenu(MainController.java:118)
+	at controller.MainController.mainMenu(MainController.java:52)
+	at controller.MainController.doWork(MainController.java:28)
+	at Main.main(Main.java:19)
+2018-07-10 13:54:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Объект уже закрыт
+The object is already closed [90007-197]
+2018-07-10 13:55:18 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Объект уже закрыт
+The object is already closed [90007-197]
+2018-07-10 14:01:21 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at repository.impl.ConnectionFactory.getConnection(ConnectionFactory.java:21)
+	at repository.impl.CountryDAOH2Impl.<init>(CountryDAOH2Impl.java:32)
+	at service.CountryService.<init>(CountryService.java:12)
+	at controller.MainController.<init>(MainController.java:15)
+	at Main.main(Main.java:18)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 29 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 23 more
+2018-07-10 14:01:21 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at repository.impl.ConnectionFactory.getConnection(ConnectionFactory.java:21)
+	at repository.impl.TourDAOH2Impl.<init>(TourDAOH2Impl.java:44)
+	at service.TourService.<init>(TourService.java:12)
+	at controller.MainController.<init>(MainController.java:16)
+	at Main.main(Main.java:18)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 29 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 23 more
+2018-07-10 14:01:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Объект уже закрыт
+The object is already closed [90007-197]
+2018-07-10 14:03:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Объект уже закрыт
+The object is already closed [90007-197]
+2018-07-10 14:06:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Объект уже закрыт
+The object is already closed [90007-197]
+2018-07-10 14:28:43 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Объект уже закрыт
+The object is already closed [90007-197]
+2018-07-10 17:01:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Столбец "country.id" не найден
+Column "country.id" not found [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3148)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3247)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:346)
+	at repository.impl.TourDAOH2Impl.getCountriesByTourId(TourDAOH2Impl.java:181)
+	at service.TourService.getCountriesByTourId(TourService.java:36)
+	at controller.MainController.lambda$getAllTours$0(MainController.java:387)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at controller.MainController.getAllTours(MainController.java:386)
+	at controller.MainController.showToursMenu(MainController.java:118)
+	at controller.MainController.mainMenu(MainController.java:52)
+	at controller.MainController.doWork(MainController.java:28)
+	at Main.main(Main.java:16)
+2018-07-10 17:01:52 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Столбец "country.id" не найден
+Column "country.id" not found [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3148)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3247)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:346)
+	at repository.impl.TourDAOH2Impl.getCountriesByTourId(TourDAOH2Impl.java:181)
+	at service.TourService.getCountriesByTourId(TourService.java:36)
+	at controller.MainController.lambda$getAllTours$0(MainController.java:387)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at controller.MainController.getAllTours(MainController.java:386)
+	at controller.MainController.showToursMenu(MainController.java:118)
+	at controller.MainController.mainMenu(MainController.java:52)
+	at controller.MainController.doWork(MainController.java:28)
+	at Main.main(Main.java:16)
+2018-07-10 17:01:52 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Столбец "country.id" не найден
+Column "country.id" not found [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3148)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3247)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:346)
+	at repository.impl.TourDAOH2Impl.getCountriesByTourId(TourDAOH2Impl.java:181)
+	at service.TourService.getCountriesByTourId(TourService.java:36)
+	at controller.MainController.lambda$getAllTours$0(MainController.java:387)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at controller.MainController.getAllTours(MainController.java:386)
+	at controller.MainController.showToursMenu(MainController.java:118)
+	at controller.MainController.mainMenu(MainController.java:52)
+	at controller.MainController.doWork(MainController.java:28)
+	at Main.main(Main.java:16)
+2018-07-10 19:49:40 jdbc[9]: null
+org.h2.message.DbException: Незакрытое приложением соединение уничтожено сборщиком мусора
+The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:197)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:137)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at repository.impl.ConnectionFactory.getConnection(ConnectionFactory.java:21)
+	at repository.impl.CountryDAOH2Impl.getAllCountries(CountryDAOH2Impl.java:99)
+	at service.CountryService.getAllCountries(CountryService.java:29)
+	at controller.MainController.showCountriesMenu(MainController.java:171)
+	at controller.MainController.mainMenu(MainController.java:56)
+	at controller.MainController.doWork(MainController.java:26)
+	at Main.main(Main.java:19)
+Caused by: org.h2.jdbc.JdbcSQLException: Незакрытое приложением соединение уничтожено сборщиком мусора
+The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 16 more
+2018-07-10 19:49:40 jdbc[9]: null
+org.h2.message.DbException: Незакрытое приложением соединение уничтожено сборщиком мусора
+The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:197)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:137)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at repository.impl.ConnectionFactory.getConnection(ConnectionFactory.java:21)
+	at repository.impl.CountryDAOH2Impl.getAllCountries(CountryDAOH2Impl.java:99)
+	at service.CountryService.getAllCountries(CountryService.java:29)
+	at controller.MainController.showCountriesMenu(MainController.java:171)
+	at controller.MainController.mainMenu(MainController.java:56)
+	at controller.MainController.doWork(MainController.java:26)
+	at Main.main(Main.java:19)
+Caused by: org.h2.jdbc.JdbcSQLException: Незакрытое приложением соединение уничтожено сборщиком мусора
+The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 16 more
+2018-07-10 19:49:40 jdbc[9]: null
+org.h2.message.DbException: Незакрытое приложением соединение уничтожено сборщиком мусора
+The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:197)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:137)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at repository.impl.ConnectionFactory.getConnection(ConnectionFactory.java:21)
+	at repository.impl.CountryDAOH2Impl.getAllCountries(CountryDAOH2Impl.java:99)
+	at service.CountryService.getAllCountries(CountryService.java:29)
+	at controller.MainController.showCountriesMenu(MainController.java:171)
+	at controller.MainController.mainMenu(MainController.java:56)
+	at controller.MainController.doWork(MainController.java:26)
+	at Main.main(Main.java:19)
+Caused by: org.h2.jdbc.JdbcSQLException: Незакрытое приложением соединение уничтожено сборщиком мусора
+The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 16 more
+2018-07-10 19:49:40 jdbc[9]: null
+org.h2.message.DbException: Незакрытое приложением соединение уничтожено сборщиком мусора
+The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:197)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:137)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at repository.impl.ConnectionFactory.getConnection(ConnectionFactory.java:21)
+	at repository.impl.CountryDAOH2Impl.getAllCountries(CountryDAOH2Impl.java:99)
+	at service.CountryService.getAllCountries(CountryService.java:29)
+	at controller.MainController.showCountriesMenu(MainController.java:171)
+	at controller.MainController.mainMenu(MainController.java:56)
+	at controller.MainController.doWork(MainController.java:26)
+	at Main.main(Main.java:19)
+Caused by: org.h2.jdbc.JdbcSQLException: Незакрытое приложением соединение уничтожено сборщиком мусора
+The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 16 more
+2018-07-10 19:49:40 jdbc[9]: null
+org.h2.message.DbException: Незакрытое приложением соединение уничтожено сборщиком мусора
+The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:197)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:137)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at repository.impl.ConnectionFactory.getConnection(ConnectionFactory.java:21)
+	at repository.impl.CountryDAOH2Impl.getAllCountries(CountryDAOH2Impl.java:99)
+	at service.CountryService.getAllCountries(CountryService.java:29)
+	at controller.MainController.showCountriesMenu(MainController.java:171)
+	at controller.MainController.mainMenu(MainController.java:56)
+	at controller.MainController.doWork(MainController.java:26)
+	at Main.main(Main.java:19)
+Caused by: org.h2.jdbc.JdbcSQLException: Незакрытое приложением соединение уничтожено сборщиком мусора
+The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 16 more
+2018-07-11 13:40:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "ORDERS" не найдена
+Table "ORDERS" not found; SQL statement:
+CREATE TABLE IF NOT EXISTS clients (id INT(11) PRIMARY KEY AUTO_INCREMENT, first_name VARCHAR(50), last_name VARCHAR(50), age INT(3), phone VARCHAR(50), order_id INT(11) REFERENCES orders(id)); [42102-197]
+2018-07-11 13:40:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "ORDERS" не найдена
+Table "ORDERS" not found; SQL statement:
+CREATE TABLE IF NOT EXISTS client_orders (id INT(11) PRIMARY KEY AUTO_INCREMENT, client_id INT(11), order_id INT(11) REFERENCES orders(id)); [42102-197]
+2018-07-11 13:44:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "ORDERS" не найдена
+Table "ORDERS" not found; SQL statement:
+CREATE TABLE IF NOT EXISTS clients (id INT(11) PRIMARY KEY AUTO_INCREMENT, first_name VARCHAR(50), last_name VARCHAR(50), age INT(3), phone VARCHAR(50), order_id INT(11) REFERENCES orders(id)); [42102-197]
+2018-07-11 13:45:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "ORDERS" не найдена
+Table "ORDERS" not found; SQL statement:
+CREATE TABLE IF NOT EXISTS clients (id INT(11) PRIMARY KEY AUTO_INCREMENT, first_name VARCHAR(50), last_name VARCHAR(50), age INT(3), phone VARCHAR(50), order_id INT(11) REFERENCES orders(id)); [42102-197]
+2018-07-11 13:50:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Параметр "#5" не установлен
+Parameter "#5" is not set; SQL statement:
+INSERT INTO clients (first_name, last_name, age, phone, order_id) VALUES (?, ?, ?, ?, ?) [90012-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:81)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:170)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:101)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:199)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:153)
+	at repository.impl.ClientDAOH2Impl.addClient(ClientDAOH2Impl.java:73)
+	at service.ClientService.addClient(ClientService.java:14)
+	at controller.ClientController.addClient(ClientController.java:85)
+	at controller.ClientController.showClientsMenu(ClientController.java:36)
+	at controller.MainController.mainMenu(MainController.java:45)
+	at controller.MainController.doWork(MainController.java:15)
+	at Main.main(Main.java:19)
+2018-07-11 16:22:00 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at repository.impl.ConnectionFactory.getConnection(ConnectionFactory.java:21)
+	at repository.impl.CountryDAOH2Impl.<init>(CountryDAOH2Impl.java:31)
+	at service.CountryService.<init>(CountryService.java:13)
+	at controller.TourController.<init>(TourController.java:17)
+	at controller.MainController.<init>(MainController.java:7)
+	at Main.main(Main.java:18)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 30 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 24 more
+2018-07-11 16:22:00 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at repository.impl.ConnectionFactory.getConnection(ConnectionFactory.java:21)
+	at repository.impl.TourDAOH2Impl.<init>(TourDAOH2Impl.java:47)
+	at service.TourService.<init>(TourService.java:13)
+	at controller.TourController.<init>(TourController.java:18)
+	at controller.MainController.<init>(MainController.java:7)
+	at Main.main(Main.java:18)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 30 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 24 more
+2018-07-11 16:22:00 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at repository.impl.ConnectionFactory.getConnection(ConnectionFactory.java:21)
+	at repository.impl.CountryDAOH2Impl.<init>(CountryDAOH2Impl.java:31)
+	at service.CountryService.<init>(CountryService.java:13)
+	at controller.CountryController.<init>(CountryController.java:13)
+	at controller.MainController.<init>(MainController.java:8)
+	at Main.main(Main.java:18)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 30 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 24 more
+2018-07-11 16:22:00 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at repository.impl.ConnectionFactory.getConnection(ConnectionFactory.java:21)
+	at repository.impl.CountryDAOH2Impl.<init>(CountryDAOH2Impl.java:31)
+	at service.CountryService.<init>(CountryService.java:13)
+	at controller.TourController.<init>(TourController.java:17)
+	at controller.OrderController.<init>(OrderController.java:13)
+	at controller.MainController.<init>(MainController.java:9)
+	at Main.main(Main.java:18)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 31 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 25 more
+2018-07-11 16:22:00 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at repository.impl.ConnectionFactory.getConnection(ConnectionFactory.java:21)
+	at repository.impl.TourDAOH2Impl.<init>(TourDAOH2Impl.java:47)
+	at service.TourService.<init>(TourService.java:13)
+	at controller.TourController.<init>(TourController.java:18)
+	at controller.OrderController.<init>(OrderController.java:13)
+	at controller.MainController.<init>(MainController.java:9)
+	at Main.main(Main.java:18)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 31 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 25 more
+2018-07-11 16:22:00 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:307)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2506)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:383)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:364)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2934)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2538)
+	at org.h2.engine.Database.open(Database.java:709)
+	at org.h2.engine.Database.openDatabase(Database.java:286)
+	at org.h2.engine.Database.<init>(Database.java:280)
+	at org.h2.engine.Engine.openSession(Engine.java:66)
+	at org.h2.engine.Engine.openSession(Engine.java:179)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:157)
+	at org.h2.engine.Engine.createSession(Engine.java:140)
+	at org.h2.engine.Engine.createSession(Engine.java:28)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:351)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at repository.impl.ConnectionFactory.getConnection(ConnectionFactory.java:21)
+	at repository.impl.ClientDAOH2Impl.<init>(ClientDAOH2Impl.java:36)
+	at service.ClientService.<init>(ClientService.java:11)
+	at controller.ClientController.<init>(ClientController.java:14)
+	at controller.MainController.<init>(MainController.java:10)
+	at Main.main(Main.java:18)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]" [50000-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 30 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/Алексей/IdeaProjects/TourManager/tour_manager_db.mv.db [1.4.197/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:870)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
+	... 24 more
